@@ -1,0 +1,7 @@
+# SpookyToken
+type SpookyToken @entity {
+  id: ID!
+
+  "TotalBurned"
+  totalBurned: BigInt!
+}

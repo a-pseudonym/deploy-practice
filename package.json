@@ -1,0 +1,43 @@
+{
+  "name": "spooky-subgraph",
+  "description": "SpookySwap Subgraph",
+  "version": "2.0.0",
+  "repository": "git@github.com:a-pseudonym/deploy-practice.git",
+  "author": "a-pseudonym",
+  "license": "MIT",
+  "scripts": {
+    "codegen": "yarn codegen:exchange && yarn codegen:pairs && yarn codegen:boo",
+    "codegen:exchange": "graph codegen subgraphs/exchange.yaml",
+    "codegen:pairs": "graph codegen subgraphs/pairs.yaml",
+    "codegen:boo": "graph codegen subgraphs/boo.yaml",
+    "build": "yarn build:exchange && yarn build:pairs && yarn build:boo",
+    "build:exchange": "graph build subgraphs/exchange.yaml",
+    "build:pairs": "graph build subgraphs/pairs.yaml",
+    "build:boo": "graph build subgraphs/boo.yaml",
+    "deploy:exchange": "graph deploy --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/ a-pseudonym/deploy-practice-exchange subgraphs/exchange.yaml",
+    "deploy:pairs": "graph deploy --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/ a-pseudonym/deploy-practice-pair subgraphs/pairs.yaml",
+    "deploy:boo": "graph deploy --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/ a-pseudonym/deploy-practice subgraphs/boo.yaml",
+    "format:check": "prettier --check '*/**/*.{js,ts}'",
+    "format:write": "prettier --write '*/**/*.{js,ts}'",
+    "lint": "eslint '*/**/*.{js,ts}'"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn format:write",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^12.1.3",
+    "@commitlint/config-conventional": "^12.1.3",
+    "@graphprotocol/graph-cli": "^0.20.0",
+    "@graphprotocol/graph-ts": "^0.20.1",
+    "@typescript-eslint/eslint-plugin": "^4.23.0",
+    "@typescript-eslint/parser": "^4.23.0",
+    "eslint": "^7.26.0",
+    "eslint-config-prettier": "^8.3.0",
+    "husky": "^4.3.8",
+    "prettier": "^2.3.0",
+    "typescript": "^4.2.4"
+  }
+}
